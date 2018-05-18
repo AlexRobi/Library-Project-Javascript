@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Project: Library</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/stylesheet.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="container wrapper">
+    <h1 class="text-center">Javascript</h1>
+    <h2 class="text-center">Project: Library</h2>
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+      Add Book
+      <i class="fas fa-plus-circle"></i>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a book</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="bookForm" onsubmit="return(validateForm());">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="inputBookName">Book</label>
+                <input id="inputBookName" class="form-control" placeholder="Enter the book name">
+                <div class="form-error" id="bookNameError"></div>
+              </div>
+              <div class="form-group">
+                <label for="inputBookAuthor">Author</label>
+                <input id="inputBookAuthor" class="form-control" placeholder="Enter the author name">
+                <div class="form-error" id="bookAuthorError"></div>
+              </div>
+              <div class="form-group">
+                <label for="inputBookPages">Number of pages</label>
+                <input type="number" id="inputBookPages" class="form-control" placeholder="Enter the number of pages">
+                <div class="form-error" id="bookPagesError"></div>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="readCheck">
+                <label class="form-check-label" for="readCheck">Did you read it?</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetForm()">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="library">
+      <div class="library-header">
+        <div class="library-header__name text">Name</div>
+        <div class="library-header__author">Author</div>
+        <div class="library-header__pages">Pages</div>
+        <div class="library-header__read">Read</div>
+      </div>
+      <div class="library-content">
+      </div>
+    </div>
+  </div>
+
+  <footer class="container">
+    <div>Coded by
+      <a href="http://pacific-tor-56437.herokuapp.com/" target="_blank">Alexis Robillart</a>
+      (<a href="#" target="_blank">source code</a>)
+    </div>
+    <div>
+      <a href="https://www.theodinproject.com/lessons/library" target="_blank">Project: Library | Javascript</a>
+      for the Odin Project
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+
+</body>
+
+</html>
