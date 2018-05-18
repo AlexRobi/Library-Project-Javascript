@@ -1,17 +1,9 @@
-let myLibrary = []
-
 function Book(name, author, pages, read) {
   this.name = name;
   this.author = author;
   this.pages = pages;
   this.read = read;
 }
-
-let hobbit = new Book("To Kill a Mockingbird", "Harper Lee", "324", false)
-myLibrary.push(hobbit)
-
-let harry = new Book("Pride and Prejudice", "Jane Austen, Anna Quindlen", "279", false)
-myLibrary.push(harry)
 
 function addBook() {
   name = document.querySelector("#inputBookName").value
@@ -24,7 +16,8 @@ function addBook() {
   }
   let book = new Book(name, author, pages, read)
   myLibrary.push(book)
-  populateStorage();
+  saveStorage();
+  loadStorage();
   render();
   resetForm();
 }
@@ -34,10 +27,10 @@ function resetForm() {
 }
 
 function render() {
-  setStorage();
 
   resetBooks();
 
+  console.log(myLibrary)
   if (myLibrary.length === 0) {
     newBookCard = document.createElement("div");
     newBookCard.classList.add("book-card");
@@ -107,7 +100,7 @@ function refreshButtons() {
       id = btn.getAttribute("data-id")
       document.querySelector('[data-id="' + id + '"]').remove()
       myLibrary.splice(id, 1);
-      populateStorage();
+      saveStorage();
       render();
     });
   });
@@ -134,8 +127,6 @@ function resetBooks() {
     div.remove();
   });
 }
-
-render();
 
 function validateForm() {
 
@@ -201,34 +192,34 @@ function validateForm() {
   }
 }
 
-function storageAvailable(type) {
-  try {
-    var storage = window[type],
-      x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  }
-  catch (e) {
-    return e instanceof DOMException && (
-      // everything except Firefox
-      e.code === 22 ||
-      // Firefox
-      e.code === 1014 ||
-      // test name field too, because code might not be present
-      // everything except Firefox
-      e.name === 'QuotaExceededError' ||
-      // Firefox
-      e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-      // acknowledge QuotaExceededError only if there's something already stored
-      storage.length !== 0;
-  }
-}
-
-function populateStorage() {
+function saveStorage() {
   localStorage.setItem("storedLibrary", JSON.stringify(myLibrary));
 }
 
-function setStorage() {
+function loadStorage() {
   myLibrary = JSON.parse(localStorage.getItem("storedLibrary"));
 }
+
+function defaultLibrary() {
+  let hobbit = new Book("To Kill a Mockingbird", "Harper Lee", "324", false)
+  let tempLibrary = []
+  tempLibrary.push(hobbit)
+
+  let harry = new Book("Pride and Prejudice", "Jane Austen, Anna Quindlen", "279", false)
+  tempLibrary.push(harry)
+
+  return tempLibrary;
+}
+
+function initializeLibrary() {
+  if (JSON.parse(localStorage.getItem("storedLibrary")) == null) {
+    return defaultLibrary();
+  }
+  else {
+    console.log((JSON.parse(localStorage.getItem("storedLibrary"))))
+    return (JSON.parse(localStorage.getItem("storedLibrary")));
+  }
+}
+myLibrary = initializeLibrary();
+saveStorage();
+render();
